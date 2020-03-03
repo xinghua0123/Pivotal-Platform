@@ -1,7 +1,7 @@
 ### Pre-Requisites
 #### PKS Cli
 Download and install the Pivotal Container Service Command Line Interface (PKS CLI):
-https://network.pivotal.io/products/pivotal-container-service
+https://network.pivotal.io/products/pivotal-container-service<br/>
 After renaming the file to pks, move it to /usr/local/bin and make sure /usr/local/bin is included in the PATH.
 
 #### Root CA Certificate (if you are accessing from your localhost )
