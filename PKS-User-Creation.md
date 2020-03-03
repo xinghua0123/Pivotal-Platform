@@ -107,5 +107,21 @@ roleRef:
 ## Login UAA as individual user
 ```shell
 pks get-kubeconfig tracy-pks-cluster-1 -u team-1 -a https://api.pks.tracy.cf-app.com -k -p # credential is associated with individual user
+```
+Change default namespace for each user
+```shell
 kubectl config set-context --current --namespace=team-1
+```
+Example for permission segregation by namespaces:
+```shell
+ xhua@Ron-MBP   ~  pks get-kubeconfig tracy-pks-cluster-1 -u team_1 -a https://api.pks.tracy.cf-app.com -k              Password: ******
+Fetching kubeconfig for cluster tracy-pks-cluster-1 and user team_1.
+You can now use the kubeconfig for user team_1:
+$kubectl config use-context tracy-pks-cluster-1
+ xhua@Ron-MBP   ~  kubectl config set-context --current --namespace=team-1                                             
+Context "tracy-pks-cluster-1" modified.
+ xhua@Ron-MBP   ~  k get pods                                                                                         
+No resources found in team-1 namespace.
+ xhua@Ron-MBP   ~  k get pods -n default                                                                               
+Error from server (Forbidden): pods is forbidden: User "user_team_1" cannot list resource "pods" in API group "" in the namespace "default"
 ```
