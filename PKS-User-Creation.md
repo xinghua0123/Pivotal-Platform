@@ -1,15 +1,15 @@
-### Pre-Requisites
-#### PKS Cli
+## Pre-Requisites
+### PKS Cli
 Download and install the Pivotal Container Service Command Line Interface (PKS CLI):
 https://network.pivotal.io/products/pivotal-container-service<br/>
 After renaming the file to pks, move it to /usr/local/bin and make sure /usr/local/bin is included in the PATH.
 
-#### Root CA Certificate (if you are accessing from your localhost )
+### Root CA Certificate (if you are accessing from your localhost )
 1. SSH into Ops Manager VM
 2. Navigate to /var/tempest/workspaces/default/root_ca_certificate
 3. Copy the content of certificate and move it to local
 
-#### UAAC Cli
+### UAAC Cli
 Before installing UAAC Cli, make sure you have latest version of ruby. If not, please follow the steps below.
 If you're on macOS, we recommend installing rbenv with Homebrew.
 1. Install rbenv.
