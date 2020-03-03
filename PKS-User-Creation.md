@@ -27,7 +27,7 @@ rbenv init
 
 4. Verify that rbenv is properly set up using this rbenv-doctor script:
 ```shell
-xhua@Ron-MBP   ~  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 Checking for `rbenv' in PATH: /usr/local/bin/rbenv
 Checking for rbenv shims in PATH: OK
 Checking `rbenv install' support: /usr/local/bin/rbenv-install (ruby-build 20200224)
