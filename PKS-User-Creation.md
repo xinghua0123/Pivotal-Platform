@@ -43,3 +43,69 @@ rbenv install 2.7.0 # install the version of 2.7.0
 rbenv global 2.7.0  # switch the ruby version to newly installed one
 ruby --version      # verify the ruby verion
 ```
+
+### kubectl cli
+Download and install the Kubernetes Command Line Tool (kubectl):
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+## Login UAA as admin and create new user
+### Login UAA
+```shell
+uaac --skip-ssl-validation target https://<pks_api_url>:8443 --ca-cert <directory on your localhost where the root ca cert is placed>
+uaac token client get admin -s  # credential is associated with Pks Uaa Management Admin Client
+```
+
+### Create new user in UAA
+```shell
+uaac user add <username> --emails <email_address> -p <password>
+uaac member add <UAA_Scope> <username>
+```
+A UAA admin user can assign the following UAA scopes to Enterprise PKS users:
+
+- pks.clusters.manage: Accounts with this scope can create and access their own clusters.
+- pks.clusters.admin: Accounts with this scope can create and access all clusters.
+- pks.clusters.admin.read: Accounts with this scope can access any information about all clusters except for cluster credentials.
+
+### Login to PKS
+```shell
+pks login -a api.pks.tracy.cf-app.com -u admin -k # credential is associated with Uaa Admin Password
+pks get-kubeconfig tracy-pks-cluster-1 -u admin -a https://api.pks.tracy.cf-app.com -k -p # credential is associated with Uaa Admin Password
+```
+
+### Create kubernetes objects
+```shell
+kubectl create namespace team-1
+kubectl create -f role.yaml
+```
+
+Sample role.yaml
+```yaml
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: role-by-namespace
+rules:
+- apiGroups: [""]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rolebinding-team-1
+  namespace: team-1
+subjects:
+- kind: User
+  name: user_team_1
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: role-by-namespace
+  apiGroup: rbac.authorization.k8s.io
+```
+
+## Login UAA as individual user
+```shell
+pks get-kubeconfig tracy-pks-cluster-1 -u team-1 -a https://api.pks.tracy.cf-app.com -k -p # credential is associated with individual user
+kubectl config set-context --current --namespace=team-1
+```
