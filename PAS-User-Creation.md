@@ -9,7 +9,7 @@ cf login --skip-ssl-validation -a https://api.sys.beverlyhills.cf-app.com -u adm
 
 ### Create organization qouta
 ```shell
-cf create-quota QUOTA [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [-a APP_INSTANCES] [--allow-paid-service-plans] [--reserved-route-ports RESERVED_ROUTE_PORTS]
+cf create-quota [QUOTA_NAME] [-m TOTAL_MEMORY] [-i INSTANCE_MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [-a APP_INSTANCES] [--allow-paid-service-plans] [--reserved-route-ports RESERVED_ROUTE_PORTS]
 ```
 Example:
 ```shell
@@ -24,7 +24,7 @@ cf target -o <org_name> # targeting specific organization and manage all the spa
 
 ### Create space qouta
 ```shell
-cf create-space-quota QUOTA [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [-a APP_INSTANCES] [--allow-paid-service-plans] [--reserved-route-ports RESERVED_ROUTE_PORTS]
+cf create-space-quota [QUOTA_NAME] [-i INSTANCE_MEMORY] [-m MEMORY] [-r ROUTES] [-s SERVICE_INSTANCES] [-a APP_INSTANCES] [--allow-paid-service-plans] [--reserved-route-ports RESERVED_ROUTE_PORTS]
 ```
 
 Example:
@@ -34,7 +34,7 @@ cf create-space-quota space-quota -i 2G -m 30G -s 5 -a 15 -r 15
 
 ### Create new space
 ```shell
-cf create-space SPACE [-o ORG] [-q SPACE_QUOTA]
+cf create-space [SPACE_NAME] [-o ORG] [-q SPACE_QUOTA]
 ```
 Example:
 ```shell
@@ -51,3 +51,8 @@ The following describes each type of space role in PAS:
 - Space Managers: Administer a space within an org.
 - Space Developers: Manage apps, services, and space-scoped service brokers in a space.
 - Space Auditors: Read-only access to a space.
+
+### Login PAS as individual user
+```shell
+cf login --skip-ssl-validation -a <api_url> -u <username> -p <password> -o <org_name> -s <space_name>
+```
