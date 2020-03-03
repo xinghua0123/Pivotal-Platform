@@ -16,4 +16,10 @@ Example:
 cf create-quota org-quota -m 120G -r 500 -s 75
 ```
 
-### 
+### Create new organization
+```shell
+cf create-org <org_name> -q <org_qouta_name>
+cf target -o <org_name>
+```
+
+
