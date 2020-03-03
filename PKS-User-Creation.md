@@ -35,3 +35,11 @@ Counting installed Ruby versions: 1 versions
 Checking RubyGems settings: OK
 Auditing installed plugins: OK
 ```
+
+5. Now you're ready to install some other Ruby versions using:
+```shell
+rbenv install -l    # list out all the available version of ruby
+rbenv install 2.7.0 # install the version of 2.7.0
+rbenv global 2.7.0  # switch the ruby version to newly installed one
+ruby --version      # verify the ruby verion
+```
